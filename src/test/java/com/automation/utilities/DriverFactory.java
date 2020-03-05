@@ -12,7 +12,7 @@ public class DriverFactory {
      * @param browserName
      * @return WebDriver object
      */
-    public static WebDriver crateADriver(String browserName){
+    public static WebDriver createADriver(String browserName){
 
         if(browserName.equalsIgnoreCase("chrome")){
             WebDriverManager.chromedriver().setup();
