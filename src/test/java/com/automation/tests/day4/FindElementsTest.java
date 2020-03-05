@@ -24,13 +24,15 @@ public class FindElementsTest {
             System.out.println(link.getText());
             System.out.println(link.getAttribute("href"));
             System.out.println();
-            link.click();
-            Thread.sleep(2000);
-            driver.navigate().back();
         }
 
-
-
+        for (int i = 1; i < links.size() ; i++) {
+            driver.findElements(By.tagName("a")).get(i).click();
+         //   Thread.sleep(2000);
+            driver.navigate().back();
+         //   Thread.sleep(2000);
+         //   links = driver.findElements(By.tagName("a"));
+        }
 
         driver.quit();
     }
