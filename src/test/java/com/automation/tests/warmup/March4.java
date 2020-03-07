@@ -24,7 +24,7 @@ public class March4 {
      * print number of results
      */
     public static void ebayTest() throws Exception {
-        WebDriver driver = DriverFactory.createADriver("chrome");
+        WebDriver driver = DriverFactory.createDriver("chrome");
         driver.get("http://ebay.com");
 
         Thread.sleep(2000);//to wait 2 seconds
@@ -54,7 +54,7 @@ public class March4 {
      * verify title contains search term
      */
     public static void amazonTest() throws Exception{
-        driver = DriverFactory.createADriver("chrome");
+        driver = DriverFactory.createDriver("chrome");
         driver.get("http://amazon.com");
         //enter text and click ENTER
         driver.findElement(By.id("twotabsearchtextbox")).sendKeys("java book", Keys.ENTER);
@@ -78,7 +78,7 @@ public class March4 {
      * verify url ends with `Selenium_(software)`
      */
     public static void wikiTest() throws Exception{
-        driver = DriverFactory.createADriver("chrome");
+        driver = DriverFactory.createDriver("chrome");
         //Go to wikipedia.org
         driver.get("https://en.wikipedia.org/wiki/Main_Page");
 
