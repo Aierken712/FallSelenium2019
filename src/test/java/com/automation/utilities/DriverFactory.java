@@ -12,7 +12,7 @@ public class DriverFactory {
      * @param browserName
      * @return WebDriver object
      */
-    public static WebDriver createADriver(String browserName){
+    public static WebDriver createDriver(String browserName){
 
         if(browserName.equalsIgnoreCase("chrome")){
             WebDriverManager.chromedriver().version("79.0").setup();
