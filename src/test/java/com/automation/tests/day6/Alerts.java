@@ -15,6 +15,7 @@ public class Alerts {
         WebDriver driver = DriverFactory.createDriver("chrome");
         driver.get("http://practice.cybertekschool.com/javascript_alerts");
         BrowserUtils.wait(2);
+
         List<WebElement> buttons = driver.findElements(By.tagName("button"));
 
         buttons.get(0).click();// to click on the first button
