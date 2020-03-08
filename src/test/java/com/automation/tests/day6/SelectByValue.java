@@ -12,8 +12,8 @@ public class SelectByValue {
         WebDriver driver = DriverFactory.createDriver("chrome");
         driver.get("http://practice.cybertekschool.com/dropdown");
         BrowserUtils.wait(3);
-        Select stateSelect = new Select(driver.findElement(By.id("state")));
 
+        Select stateSelect = new Select(driver.findElement(By.id("state")));
         stateSelect.selectByValue("DC");
 
         String expected = "District Of Columbia";
