@@ -49,6 +49,7 @@ public class SelectByTextMultipleOptions {
         BrowserUtils.wait(1);
         languagesSelect.deselectAll();
 
+
         BrowserUtils.wait(2);
         driver.quit();
     }
