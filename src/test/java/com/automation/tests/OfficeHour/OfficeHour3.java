@@ -2,7 +2,7 @@ package com.automation.tests.OfficeHour;
 
 import java.util.*;
 
-public class officeHour3 {
+public class OfficeHour3 {
 
     public static void main(String[] args) {
         /*

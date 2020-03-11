@@ -9,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.awt.*;
 
-public class officeHour2 {
+public class OfficeHour2 {
 
     public static void main(String[] args) throws Exception {
 
