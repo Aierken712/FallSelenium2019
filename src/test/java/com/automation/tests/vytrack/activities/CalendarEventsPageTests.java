@@ -8,9 +8,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
+import java.time.ZoneId;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class CalendarEventsPageTests {
 
@@ -18,14 +23,17 @@ public class CalendarEventsPageTests {
     private By passwordBy = By.id("prependedInput2");
     private WebDriver driver;
     private Actions actions;
-
     private String storeManagerUserName="storemanager85";
     private String storeManagerPassword="UserUser123";
     private By activitiesBy = By.xpath("//span[@class='title title-level-1' and contains(text(),'Activities')]");
-    private By createCalendarEventBy = By.cssSelector("a[title='Create Calendar event']");
+    private By createCalendarEventBtnBy = By.cssSelector("a[title='Create Calendar event']");
     private By currentUserBy = By.cssSelector("#user-menu > a");
-    private By ownerBy = By.id("s2id_oro_calendar_event_form_calendar");
-    private By titleBy = By.cssSelector("[name='oro_calender_event_form[title]']");
+    private By ownerBy = By.className("select2-chosen");
+    private By titleBy = By.cssSelector("[name='oro_calendar_event_form[title]']");
+    private By startDateBy = By.cssSelector("[id*='date_selector_oro_calendar_event_form_start-uid']");
+    private By startTimeBy = By.cssSelector("[id*='time_selector_oro_calendar_event_form_start-uid']");
+
+
 
     @BeforeMethod
     public void setup(){
@@ -60,11 +68,10 @@ public class CalendarEventsPageTests {
      */
     @Test
     public void verifyCreateButton(){
-        WebElement createCalendarEventBtn = driver.findElement(createCalendarEventBy);
+        WebElement createCalendarEventBtn = driver.findElement(createCalendarEventBtnBy);
         Assert.assertTrue(createCalendarEventBtn.isDisplayed());
 
     }
-
 
     /**
      * //in the @BeforeMethod
@@ -81,18 +88,29 @@ public class CalendarEventsPageTests {
      */
     @Test(description = "Default options")
     public void verifyDefaultValues(){
-        driver.findElement(createCalendarEventBy).click();
-        BrowserUtils.wait(3);
 
-        // Default owner name should be current user
-        String currentUserName = driver.findElement(currentUserBy).getText();
-        String defaultOwnerName = driver.findElement(ownerBy).getText();
-        Assert.assertEquals(currentUserName,defaultOwnerName);
+        //Click on Create Calendar Event
+        driver.findElement(createCalendarEventBtnBy).click();
+        BrowserUtils.wait(4);
+
+        //Default owner name should be current user
+        String currentUserName = driver.findElement(currentUserBy).getText().trim();
+        String defaultOwnerName = driver.findElement(ownerBy).getText().trim();
+        Assert.assertEquals(currentUserName, defaultOwnerName);
 
         // Default title should be blank
         WebElement titleElement = driver.findElement(titleBy);
         Assert.assertTrue(titleElement.getAttribute("value").isEmpty());
 
+        //date time syntax = https://www.journaldev.com/17899/java-simpledateformat-java-date-format
+        //Default start date should be current date
+        String expectedDate = LocalDate.now().format(DateTimeFormatter.ofPattern("MMM dd, yyyy"));
+        String actualDate = driver.findElement(startDateBy).getAttribute("value");
+        Assert.assertEquals(actualDate,expectedDate);
+
+        String expectedTime = LocalTime.now(ZoneId.of("GMT-7")).format(DateTimeFormatter.ofPattern("h:m a"));
+        String actualTime = driver.findElement(startTimeBy).getAttribute("value");
+        Assert.assertEquals(actualTime,expectedTime);
     }
 
     @AfterMethod

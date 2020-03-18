@@ -27,14 +27,17 @@ public class CallsPagesTests {
         driver = DriverFactory.createDriver("chrome");
         driver.get("https://qa2.vytrack.com/user/login");
         driver.manage().window().maximize();
-        actions = new Actions(driver);
         BrowserUtils.wait(3);
+
         driver.findElement(usernameBy).sendKeys(storeManagerUserName);
         driver.findElement(passwordBy).sendKeys(storeManagerPassword, Keys.ENTER);
         BrowserUtils.wait(5);
+
         //hover over Activities
+        actions = new Actions(driver);
         actions.moveToElement(driver.findElement(activitiesBy)).perform();
         BrowserUtils.wait(2);
+
         driver.findElement(By.linkText("Calls")).click();
         BrowserUtils.wait(5);
     }
