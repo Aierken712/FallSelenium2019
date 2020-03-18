@@ -18,10 +18,14 @@ public class CalendarEventsPageTests {
     private By passwordBy = By.id("prependedInput2");
     private WebDriver driver;
     private Actions actions;
+
     private String storeManagerUserName="storemanager85";
     private String storeManagerPassword="UserUser123";
     private By activitiesBy = By.xpath("//span[@class='title title-level-1' and contains(text(),'Activities')]");
     private By createCalendarEventBy = By.cssSelector("a[title='Create Calendar event']");
+    private By currentUserBy = By.cssSelector("#user-menu > a");
+    private By ownerBy = By.id("s2id_oro_calendar_event_form_calendar");
+    private By titleBy = By.cssSelector("[name='oro_calender_event_form[title]']");
 
     @BeforeMethod
     public void setup(){
@@ -45,10 +49,49 @@ public class CalendarEventsPageTests {
 
     }
 
+    /**
+     * TASK until 8:14
+     *
+     * Scenario: Verify for store manager
+     *
+     * Login as story manager
+     * Go to Activities --> Calendar Events
+     * Verify that Create Calendar Event button is displayed
+     */
     @Test
     public void verifyCreateButton(){
         WebElement createCalendarEventBtn = driver.findElement(createCalendarEventBy);
         Assert.assertTrue(createCalendarEventBtn.isDisplayed());
+
+    }
+
+
+    /**
+     * //in the @BeforeMethod
+     * Test Case: Default options
+     * Login as sales manager
+     * Go to Activities --> Calendar Events
+     *
+     *
+     * Click on Create Calendar Event
+     * Default owner name should be current user
+     * Default title should be blank
+     * Default start date should be current date
+     * Default start time should be current time
+     */
+    @Test(description = "Default options")
+    public void verifyDefaultValues(){
+        driver.findElement(createCalendarEventBy).click();
+        BrowserUtils.wait(3);
+
+        // Default owner name should be current user
+        String currentUserName = driver.findElement(currentUserBy).getText();
+        String defaultOwnerName = driver.findElement(ownerBy).getText();
+        Assert.assertEquals(currentUserName,defaultOwnerName);
+
+        // Default title should be blank
+        WebElement titleElement = driver.findElement(titleBy);
+        Assert.assertTrue(titleElement.getAttribute("value").isEmpty());
 
     }
 

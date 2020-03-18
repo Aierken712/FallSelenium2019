@@ -38,6 +38,7 @@ public class CallsPagesTests {
         driver.findElement(By.linkText("Calls")).click();
         BrowserUtils.wait(5);
     }
+
     /**
      * Scenario: Verify for store manager
      *
