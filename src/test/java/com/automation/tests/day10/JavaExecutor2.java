@@ -87,6 +87,36 @@ public class JavaExecutor2 {
         js.executeScript("arguments[0].setAttribute('value','tomsmith')",userName);
         js.executeScript("arguments[0].setAttribute('value','SuperSecretPassword')",password);
         js.executeScript("arguments[0].click()",loginbtn);
+
+        BrowserUtils.wait(3);
+        String expected = "Welcome to the Secure Area. When you are done click logout below.";
+        String subheader = js.executeScript("return document.getElementsByClassName('subheader')[0].textContent").toString();
+
+        Assert.assertEquals(subheader,expected);
+    }
+
+    @Test
+    public void scrollToElement(){
+        BrowserUtils.wait(4);
+        //href -> link, URL
+        WebElement link = driver.findElement(By.linkText("Cybertek School"));
+
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("arguments[0].scrollIntoView(true)",link);
+
+    }
+
+    @Test
+    public void scrollTest(){
+
+        driver.navigate().to("http://practice.cybertekschool.com/infinite_scroll");
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        //js.executeScript("window.scollBy(0,1000)",js);
+        for(int i=0; i<15; i++){
+            js.executeScript("window.scrollBy(0,1000)");
+            BrowserUtils.wait(1);
+        }
+
     }
 
 
