@@ -2,8 +2,10 @@ package com.automation.tests.day10;
 
 import com.automation.utilities.BrowserUtils;
 import com.automation.utilities.DriverFactory;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -39,6 +41,54 @@ public class JavaExecutor2 {
         Assert.assertEquals(actual,expected);
 
     }
+
+    @Test
+    public void clickTest(){
+
+       WebElement link = driver.findElement(By.linkText("Multiple Buttons"));
+
+       //disable this click action to perform it with js executor
+       //link.click();
+
+       JavascriptExecutor js = (JavascriptExecutor) driver;
+       //after double quote you can list WebElements that will be used
+        //as part of your javaScript code
+        //it`s varargs, so you can list 0+
+        //arguments - listed after,
+        //use index to get specific WebElement
+        //WebElement arguments = {element,link,link2};
+        //from left - to right
+       js.executeScript("arguments[0].click()",link);
+
+       WebElement button6 = driver.findElement(By.id("disappearing_button"));
+
+       js.executeScript("arguments[0].click()",button6);
+       BrowserUtils.wait(2);
+
+       WebElement result = driver.findElement(By.id("result"));
+       Assert.assertEquals(result.getText(),"Now it's gone!");
+
+    }
+
+    @Test
+    public void textInputTest(){
+        driver.findElement(By.linkText("Form Authentication")).click();
+        BrowserUtils.wait(2);
+
+        WebElement userName = driver.findElement(By.name("username"));
+        WebElement password = driver.findElement(By.name("password"));
+        WebElement loginbtn = driver.findElement(By.id("wooden_spoon"));
+
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+
+        //to get text from input box - read attribute "value"
+        //to enter text - set attribute "value"
+        // .setAttribute('value','text') - enter some text
+        js.executeScript("arguments[0].setAttribute('value','tomsmith')",userName);
+        js.executeScript("arguments[0].setAttribute('value','SuperSecretPassword')",password);
+        js.executeScript("arguments[0].click()",loginbtn);
+    }
+
 
     @AfterMethod
     public void teardown(){
