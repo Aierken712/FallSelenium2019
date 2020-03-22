@@ -63,7 +63,7 @@ public class WebOrders {
         Assert.assertEquals(zipcode.getText(), "21233");
 
         //click on update image
-        driver.findElement(By.xpath(" //td[text()='Steve Johns']//following-sibling::td/input")).click();
+        driver.findElement(By.xpath("//td[text()='Steve Johns']//following-sibling::td/input")).click();
 
         //enter new zipCode
         WebElement zipcodeInput = driver.findElement(By.id("ctl00_MainContent_fmwOrder_TextBox5"));
