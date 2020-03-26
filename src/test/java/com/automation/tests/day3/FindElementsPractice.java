@@ -46,6 +46,5 @@ public class FindElementsPractice {
         }
 
         driver.quit();//to close everything
-        driver.close();
     }
 }
