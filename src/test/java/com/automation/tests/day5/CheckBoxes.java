@@ -31,7 +31,7 @@ public class CheckBoxes {
                 //if checkbox is not selected, click on it
                 checkBoxes.get(i).click(); // click on the checkbox
             }else{
-                System.out.println( i+1 + "checkBox wasn`t clicked!");
+                System.out.println(i+1 + " checkBox was selected!");
             }
 
         }
