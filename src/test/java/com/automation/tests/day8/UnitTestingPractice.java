@@ -20,7 +20,7 @@ public class UnitTestingPractice {
 
     @Test(description = "Verify if method can reverse a String")
     public void test(){
-        String expected = "elpp";
+        String expected = "elppa";
         String actual = reverseString("apple");
         //it coming from tentng,junit also has this class
         // you can compare any data types here : Strings,primitives,arrays,objects
