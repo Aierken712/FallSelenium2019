@@ -22,15 +22,15 @@ public class WebTablePractice {
     @BeforeMethod
     public void setup(){
 
-//        WebDriverManager.chromedriver().version("79").setup();
-//        ChromeOptions chromeOptions = new ChromeOptions();
-//        //headless mode makes execution twice faster
-//        //it does everything except file uploading
-//        //set it to tru to make it work
-//        chromeOptions.setHeadless(false);// to run browser without GUI, Makes browser invisible
-//        driver = new ChromeDriver(chromeOptions);
+        WebDriverManager.chromedriver().version("79").setup();
+        ChromeOptions chromeOptions = new ChromeOptions();
+        //headless mode makes execution twice faster
+        //it does everything except file uploading
+        //set it to tru to make it work
+        chromeOptions.setHeadless(false);// to run browser without GUI, Makes browser invisible
+        driver = new ChromeDriver(chromeOptions);
 
-        driver = DriverFactory.createDriver("chrome");
+       // driver = DriverFactory.createDriver("chrome");
         driver.get("http://practice.cybertekschool.com/tables");
         driver.manage().window().maximize();
         BrowserUtils.wait(2);
