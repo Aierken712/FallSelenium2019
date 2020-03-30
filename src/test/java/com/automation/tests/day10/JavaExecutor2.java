@@ -36,7 +36,7 @@ public class JavaExecutor2 {
         //return document.title - this is javaScript code
         //document - represents HTML page
         //toString() - to avoid additional casting from object to String
-        String actual = (String)js.executeScript("return document.title").toString();
+        String actual = js.executeScript("return document.title").toString();
 
         Assert.assertEquals(actual,expected);
 
@@ -111,7 +111,7 @@ public class JavaExecutor2 {
 
         driver.navigate().to("http://practice.cybertekschool.com/infinite_scroll");
         JavascriptExecutor js = (JavascriptExecutor)driver;
-        //js.executeScript("window.scollBy(0,1000)",js);
+        //js.executeScript("window.scrollBy(0,1000)",js);
         for(int i=0; i<15; i++){
             js.executeScript("window.scrollBy(0,1000)");
             BrowserUtils.wait(1);
