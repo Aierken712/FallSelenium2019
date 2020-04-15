@@ -4,7 +4,6 @@ import com.automation.utilities.ExcelUtil;
 import org.apache.poi.ss.usermodel.*;
 import org.testng.annotations.Test;
 import java.io.File;
-import java.util.Map;
 
 public class ReadDataFromExcel {
 
